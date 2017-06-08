@@ -20,6 +20,12 @@ def drawIntialScreen(graphicsWindow):
     reset.setFill("orange")
     reset.draw(graphicsWindow)
     minutesText = Text(Point(100,12),"Minutes")
+    #close
+    close = Rectangle(Point(,),Point(,))
+    close.setFill
+    #close box line 1
+
+    #close box line 2
 
 def waitForStartClick(graphicsWindow):
     ##Main Loop
@@ -58,8 +64,11 @@ def mainLoop(graphicsWindow):
     minutesText.draw(graphicsWindow)
     hoursText.draw(graphicsWindow)
     x = True
+    paused = False
     while timer== True:
-        secondsSinceStart = secondsSinceStart + 1
+        if paused == False:
+            secondsSinceStart = secondsSinceStart + 1
+            print(paused)
         minutes = (secondsSinceStart //60 -(hours*60))
         hours = (secondsSinceStart//3600)
         secondsToPrint = (secondsSinceStart-((minutes*60)+(hours*3600)))
@@ -83,6 +92,7 @@ def mainLoop(graphicsWindow):
             box = ""
         else:
             box = checkBoxClicked(graphicsWindow,mouseClick,timeToDisplay)
+            print("box86 ",box)
         if box == "reset":
             print("reset box pressed")
             resetMessage = Text(Point(100,100),"Time set to zero")
@@ -92,18 +102,27 @@ def mainLoop(graphicsWindow):
             resetMessage.undraw()
             secondsSinceStart = 0
         elif box == "pause":
-                box = ""
-                print("pause pressed")
-                print("pause detected line 60")
-                while True:
-                    print("in pause loop")
-                    box = checkBoxClicked(graphicsWindow,mouseClick,timeToDisplay)
-                    if box == "pause":
-                        break #if pause is pressed again stop being paused
-                    else:
-                         print("Paused waiting for pause")
-                         print("asdisad box",box)
-                         time.sleep(1)
+            if paused == True:
+                paused = False
+            else:
+                paused = True
+            print("paused = ",paused)
+              #  print("line 100",paused)
+              #  box = ""
+             ##   return(box)
+              #  print("pause pressed")
+              #  print("pause detected line 104")
+              #  while paused == True:
+              #      print("in pause loop")
+              #      box = checkBoxClicked(graphicsWindow,mouseClick,timeToDisplay)
+              #      print("In pause loop. box = ",box)
+              #      if box == "pause":
+              #          paused = False
+              #          break #if pause is pressed again stop being paused
+              #      else:
+              #           print("Paused waiting for pause")
+              #           print("asdisad box",box)
+              #           time.sleep(1)
         elif box == "stop":
             print("Stop button Pressed")
             timer = False
@@ -126,19 +145,13 @@ def checkBoxClicked(graphicsWindow,mouseClick,timeToDisplay):
     else:
         box = ""
         print("No box clicked")
-    print("box",box) 
+    print("box line 129",box) 
     return(box)    #add a close box
     
 def main():
     graphicsWindow = GraphWin("Stop Watch",200,200)
     drawIntialScreen(graphicsWindow)
     waitForStartClick(graphicsWindow) #should call main loop
-    #mainLoop(graphicsWindow)
+
+#Calling main
 main()
-main
-    #secondsText = Text(Point(160,12),"Seconds")
-    #timer = True
-    #box = ""
-    #timeToDisplay = Text(Point(50,25),"")
-    #minutesText = Text(Point(100,12),"Minutes")
-    #hoursText = Text(Point(40,12),"Hours")
