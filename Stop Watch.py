@@ -45,7 +45,6 @@ def drawIntialScreen(graphicsWindow):
 
 def waitForStartClick(graphicsWindow):
     ##Main Loop
-    print("Press start to begin")
     #Waiting for the mouse to be within the start box
     startClicked=False
     mouseClick = Point(0,0)
@@ -53,18 +52,15 @@ def waitForStartClick(graphicsWindow):
     initialText.draw(graphicsWindow)
     while startClicked == False:
         mouseClick = graphicsWindow.getMouse()
-        print(mouseClick.getX())
-        print(mouseClick.getY())
         if mouseClick.getX()>10 and mouseClick.getX()<50 and mouseClick.getY()>150 and mouseClick.getY()<190:
              startClicked == True
              initialText.undraw()
              mainLoop(graphicsWindow)
-             print("break on line 41 called")
              break 
 
 def mainLoop(graphicsWindow):
-    textToDisplayWhilePaused = ""
-    print("mainLoop called")
+    textToDisplayWhilePaused = Text(Point(0,0),"")
+    textToDisplayWhilePaused.draw(graphicsWindow)
     box = ""
     timeToDisplay = Text(Point(50,25),"")
     timeToDisplay.setSize(36)
@@ -86,7 +82,6 @@ def mainLoop(graphicsWindow):
         #Stops seconds being -3600 when hours and minutes are 0.
         if paused == False:
             secondsSinceStart = secondsSinceStart + 1
-            print(paused)
         minutes = (secondsSinceStart //60 -(hours*60))
         hours = (secondsSinceStart//3600)
         secondsToPrint = (secondsSinceStart-((minutes*60)+(hours*3600)))
@@ -110,7 +105,6 @@ def mainLoop(graphicsWindow):
             box = ""
         else:
             box = checkBoxClicked(graphicsWindow,mouseClick,timeToDisplay)
-            print("box86 ",box)
         if box == "start":
                 paused = False
                 textToDisplayWhilePaused.undraw()
@@ -119,7 +113,6 @@ def mainLoop(graphicsWindow):
             if paused == False:
                 if textToDisplayWhilePaused != "":
                     textToDisplayWhilePaused.undraw()
-                print("reset box pressed")
                 resetMessage = Text(Point(100,100),"Time set to zero")
                 resetMessage.draw(graphicsWindow)
 
@@ -132,14 +125,10 @@ def mainLoop(graphicsWindow):
             paused = True
             textToDisplayWhilePaused = Text(Point(100,100),"Paused\n Press start\n to resume")
             textToDisplayWhilePaused.draw(graphicsWindow)
-            print("paused = ",paused)
         elif box == "stop":
             if paused == False:
                 if textToDisplayWhilePaused != "":
                     textToDisplayWhilePaused.undraw()
-               # textToDisplayWhilePaused = Text(Point(100,100),"")
-               # textToDisplayWhilePaused.draw(graphicsWindow)
-                print("Stop button Pressed")
                 timer = False
                 timeToDisplay.undraw()
                 waitForStartClick(graphicsWindow)
@@ -149,8 +138,6 @@ def mainLoop(graphicsWindow):
         #return(box)
 
 def checkBoxClicked(graphicsWindow,mouseClick,timeToDisplay):
-    print("checkBoxClicked called")
-    print("most recent mouse click:",mouseClick.getX(),mouseClick.getY())
     if mouseClick.getX()>10 and mouseClick.getX()<50 and mouseClick.getY()>150 and mouseClick.getY()<190:
         box = "start"
     elif mouseClick.getX()>60 and mouseClick.getX()<100 and mouseClick.getY()>150 and mouseClick.getY()<190:
@@ -161,11 +148,8 @@ def checkBoxClicked(graphicsWindow,mouseClick,timeToDisplay):
         box = "reset"
     elif mouseClick.getX()>180 and mouseClick.getX()<200 and mouseClick.getY()>0 and mouseClick.getY()<20:
         box = "close"
-        print("close clicked")
     else:
         box = ""
-        print("No box clicked")
-    print("box line 129",box) 
     return(box)    #add a close box
     
 def main():
