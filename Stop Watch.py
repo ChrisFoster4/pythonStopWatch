@@ -121,10 +121,10 @@ def mainLoop(graphicsWindow):
                 secondsSinceStart = -1
                 textToDisplayWhilePaused.draw(graphicsWindow)
         elif box == "pause":
-            
-            paused = True
-            textToDisplayWhilePaused = Text(Point(100,100),"Paused\n Press start\n to resume")
-            textToDisplayWhilePaused.draw(graphicsWindow)
+            if paused == False: 
+                paused = True
+                textToDisplayWhilePaused = Text(Point(100,100),"Paused\n Press start\n to resume")
+                textToDisplayWhilePaused.draw(graphicsWindow)
         elif box == "stop":
             if paused == False:
                 if textToDisplayWhilePaused != "":
