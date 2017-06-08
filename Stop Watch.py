@@ -63,6 +63,7 @@ def waitForStartClick(graphicsWindow):
              break 
 
 def mainLoop(graphicsWindow):
+    textToDisplayWhilePaused = ""
     print("mainLoop called")
     box = ""
     timeToDisplay = Text(Point(50,25),"")
@@ -88,7 +89,7 @@ def mainLoop(graphicsWindow):
         minutes = (secondsSinceStart //60 -(hours*60))
         hours = (secondsSinceStart//3600)
         secondsToPrint = (secondsSinceStart-((minutes*60)+(hours*3600)))
-        
+         
         
         
         #Stops seconds being -3600 when hours and minutes are 0.
@@ -116,7 +117,7 @@ def mainLoop(graphicsWindow):
 
             time.sleep(1) 
             resetMessage.undraw()
-            secondsSinceStart = 0
+            secondsSinceStart = -1 
         elif box == "pause":
             if paused == True:
                 paused = False
@@ -126,23 +127,11 @@ def mainLoop(graphicsWindow):
                 textToDisplayWhilePaused = Text(Point(100,100),"Paused\n Press pause again\n to resume")
                 textToDisplayWhilePaused.draw(graphicsWindow)
             print("paused = ",paused)
-              #  print("line 100",paused)
-              #  box = ""
-             ##   return(box)
-              #  print("pause pressed")
-              #  print("pause detected line 104")
-              #  while paused == True:
-              #      print("in pause loop")
-              #      box = checkBoxClicked(graphicsWindow,mouseClick,timeToDisplay)
-              #      print("In pause loop. box = ",box)
-              #      if box == "pause":
-              #          paused = False
-              #          break #if pause is pressed again stop being paused
-              #      else:
-              #           print("Paused waiting for pause")
-              #           print("asdisad box",box)
-              #           time.sleep(1)
         elif box == "stop":
+            if textToDisplayWhilePaused != "":
+                textToDisplayWhilePaused.undraw()
+           # textToDisplayWhilePaused = Text(Point(100,100),"")
+           # textToDisplayWhilePaused.draw(graphicsWindow)
             print("Stop button Pressed")
             timer = False
             timeToDisplay.undraw()
