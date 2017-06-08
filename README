@@ -6,8 +6,8 @@ mcsp.wartburg.edu/zelle/python/graphics.py
 
 
 Buttons explained:
-Start - Starts the timer.Has no affect if paused or running. 
-Pause - Will stop the timer incrementing.Pressing again will make it start incrementing again.While paused close,reset and stop boxes are still active. 
+Start - Starts the timer if stopped and unpauses it if paused. 
+Pause - Will stop the timer incrementing.While paused only start and close buttons are responsive. 
 Stop - Will Set the timer to 0,stop it incrementing and wait for start to be pressed again.
 Reset - Simply sets the time to 0.
 Close - Exits the program.
