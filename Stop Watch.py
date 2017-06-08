@@ -21,11 +21,15 @@ def drawIntialScreen(graphicsWindow):
     reset.draw(graphicsWindow)
     minutesText = Text(Point(100,12),"Minutes")
     #close
-    close = Rectangle(Point(,),Point(,))
-    close.setFill
+    close = Rectangle(Point(200,0),Point(180,20))
+    close.setFill("red")
+    close.draw(graphicsWindow)
     #close box line 1
-
+    line1 = Line(Point(195,2),Point(185,18))
+    line1.draw(graphicsWindow)
     #close box line 2
+    line2 = Line(Point(185,2),Point(195,18))
+    line2.draw(graphicsWindow)
 
 def waitForStartClick(graphicsWindow):
     ##Main Loop
@@ -57,9 +61,9 @@ def mainLoop(graphicsWindow):
     hours = 0
     timer = True
     ##Drawing static text
-    secondsText = Text(Point(160,12),"Seconds")
-    minutesText = Text(Point(100,12),"Minutes")
-    hoursText = Text(Point(40,12),"Hours")
+    secondsText = Text(Point(145,12),"Seconds")
+    minutesText = Text(Point(85,12),"Minutes")
+    hoursText = Text(Point(30,12),"Hours")
     secondsText.draw(graphicsWindow)
     minutesText.draw(graphicsWindow)
     hoursText.draw(graphicsWindow)
@@ -128,6 +132,8 @@ def mainLoop(graphicsWindow):
             timer = False
             timeToDisplay.undraw()
             waitForStartClick(graphicsWindow)
+        elif box == "close":
+            break
         #if box == start ignore
         #return(box)
 
@@ -142,6 +148,9 @@ def checkBoxClicked(graphicsWindow,mouseClick,timeToDisplay):
         box = "stop"
     elif mouseClick.getX()>160 and mouseClick.getX()<200 and mouseClick.getY()>150 and mouseClick.getY()<190:
         box = "reset"
+    elif mouseClick.getX()>180 and mouseClick.getX()<200 and mouseClick.getY()>0 and mouseClick.getY()<20:
+        box = "close"
+        print("close clicked")
     else:
         box = ""
         print("No box clicked")
