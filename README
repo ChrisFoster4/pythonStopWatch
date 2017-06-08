@@ -11,3 +11,6 @@ Pause - Will stop the timer incrementing.Pressing again will make it start incre
 Stop - Will Set the timer to 0,stop it incrementing and wait for start to be pressed again.
 Reset - Simply sets the time to 0.
 Close - Exits the program.
+
+Known issues:
+if you press start then pause then stop the paused text stays

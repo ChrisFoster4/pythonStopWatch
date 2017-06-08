@@ -7,18 +7,30 @@ def drawIntialScreen(graphicsWindow):
     start = Rectangle(Point(10,150),Point(50,190))
     start.setFill("light green")
     start.draw(graphicsWindow)
+    startBoxText = Text(Point(30,170),"Start")
+    startBoxText.setSize(10)
+    startBoxText.draw(graphicsWindow)
     #pause
     pause = Rectangle(Point(60,150),Point(100,190))
     pause.setFill("blue")
     pause.draw(graphicsWindow)
+    pauseBoxText = Text(Point(80,170),"Pause")
+    pauseBoxText.setSize(10)
+    pauseBoxText.draw(graphicsWindow)
     #stop
     stop = Rectangle(Point(110,150),Point(150,190))
     stop.setFill("red")
     stop.draw(graphicsWindow)
+    stopBoxText = Text(Point(130,170),"Stop")
+    stopBoxText.setSize(10)
+    stopBoxText.draw(graphicsWindow)
     #reset
     reset = Rectangle(Point(160,150),Point(199,190))
     reset.setFill("orange")
     reset.draw(graphicsWindow)
+    resetBoxText = Text(Point(180,170),"Zero")
+    resetBoxText.setSize(10)
+    resetBoxText.draw(graphicsWindow)
     minutesText = Text(Point(100,12),"Minutes")
     #close
     close = Rectangle(Point(200,0),Point(180,20))
@@ -108,8 +120,11 @@ def mainLoop(graphicsWindow):
         elif box == "pause":
             if paused == True:
                 paused = False
+                textToDisplayWhilePaused.undraw()
             else:
                 paused = True
+                textToDisplayWhilePaused = Text(Point(100,100),"Paused\n Press pause again\n to resume")
+                textToDisplayWhilePaused.draw(graphicsWindow)
             print("paused = ",paused)
               #  print("line 100",paused)
               #  box = ""
