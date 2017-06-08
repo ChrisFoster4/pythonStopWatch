@@ -1,9 +1,8 @@
-A basic python stopwatch.Extremely unlikely to be accurate.
-
+A basic python stopwatch.Extremely unlikely to be accurate however when compared against my watch it seemed to be so.
 
 Python graphics library/module can be downloaded from:
 mcsp.wartburg.edu/zelle/python/graphics.py
-
+The time module should be included.
 
 Buttons explained:
 Start - Starts the timer if stopped and unpauses it if paused. 

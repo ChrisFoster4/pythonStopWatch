@@ -1,6 +1,5 @@
 import time
 from graphics import *
-##Initialising Variables
 def drawIntialScreen(graphicsWindow):
     ##Drawing controls
     #start/unpause(resume)
@@ -85,7 +84,13 @@ def mainLoop(graphicsWindow):
         minutes = (secondsSinceStart //60 -(hours*60))
         hours = (secondsSinceStart//3600)
         secondsToPrint = (secondsSinceStart-((minutes*60)+(hours*3600)))
-         
+        #Stops seconds being -3600 before it ticks over the hour   
+        if secondsToPrint <1:
+            secondsToPrint = 0
+        #Stops minutes being 60 and the turn of an hour
+        if minutes >59:
+            minutes = 0
+        #The reset button sets to -1 so this is required
         if secondsSinceStart <1:
             hours = 0
             minutes = 0
